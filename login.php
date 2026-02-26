@@ -26,3 +26,4 @@ if ($username && $password) {
 } else {
     echo "Veuillez fournir un mail et un mot de passe.";
 }
+?>
