@@ -13,7 +13,7 @@
 <div id="wrapper">
 
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Promotion</h1>
+    <h1 class="h3 mb-2 text-gray-800">Promotions</h1>
 
 <?php
 include 'connexion.php';
@@ -45,23 +45,28 @@ $resultat = $requete->fetchAll();
 
 <!-- Dropdown -->
 <div class="dropdown mb-3">
-  <button class="btn btn-secondary dropdown-toggle" type="button"
-          data-bs-toggle="dropdown" aria-expanded="false">
+  <a class="btn btn-secondary dropdown-toggle"
+     href="#"
+     role="button"
+     id="dropdownMenuLink"
+     data-toggle="dropdown"
+     aria-haspopup="true"
+     aria-expanded="false">
     Sélectionner la promotion
+  </a>
 
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="?promo=2">SLAMTP1</a></li>
-    <li><a class="dropdown-item" href="?promo=3">SLAMTP2</a></li>
-    <li><a class="dropdown-item" href="?promo=4">SISRTP1</a></li>
-    <li><a class="dropdown-item" href="?promo=5">SISRTP2</a></li>
-    <li><a class="dropdown-item" href="?promo=6">SLAMALT1</a></li>
-    <li><a class="dropdown-item" href="?promo=7">SLAMALT2</a></li>
-    <li><a class="dropdown-item" href="?promo=8">SISRALT1</a></li>
-    <li><a class="dropdown-item" href="?promo=9">SISRALT2</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="?">Toutes les promotions</a></li>
-  </ul>
-  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="?promo=2">SLAMTP1</a>
+    <a class="dropdown-item" href="?promo=3">SLAMTP2</a>
+    <a class="dropdown-item" href="?promo=4">SISRTP1</a>
+    <a class="dropdown-item" href="?promo=5">SISRTP2</a>
+    <a class="dropdown-item" href="?promo=6">SLAMALT1</a>
+    <a class="dropdown-item" href="?promo=7">SLAMALT2</a>
+    <a class="dropdown-item" href="?promo=8">SISRALT1</a>
+    <a class="dropdown-item" href="?promo=9">SISRALT2</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="?">Toutes les promotions</a>
+  </div>
 </div>
 
 
@@ -105,13 +110,8 @@ $resultat = $requete->fetchAll();
 </div>
 
 <!-- Scripts -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="js/sb-admin-2.min.js"></script>
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="js/demo/datatables-demo.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
