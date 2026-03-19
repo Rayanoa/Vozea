@@ -42,56 +42,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Récupération des promotions
 $promos = $path->query("SELECT id_promotions, name FROM promotions ORDER BY name")->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Ajouter un utilisateur</title>
     <link href="css/styles.css" rel="stylesheet">
+    <style>
+        body, html { height: 100%; margin: 0; }
+        .wrapper { display: flex; min-height: 100vh; }
+        /* Sidebar */
+        .sidebar { width: 220px; background-color: #343a40; color: white; }
+        .sidebar a { display: block; padding: 15px; color: white; text-decoration: none; }
+        .sidebar a:hover { background-color: #495057; }
+        /* Contenu principal */
+        .main-content { flex: 1; padding: 50px; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; }
+        .card { width: 100%; max-width: 500px; padding: 30px; box-shadow: 0 0 15px rgba(0,0,0,0.2); background: white; border-radius: 10px; }
+        .card input, .card select { width: 100%; padding: 10px; margin-bottom: 15px; }
+        .card button { width: 100%; padding: 10px; }
+    </style>
 </head>
-
 <body>
 
-<h2>Ajouter un utilisateur</h2>
+<div class="wrapper">
 
-<?php if ($success): ?>
-    <p style="color:green;"><?= htmlspecialchars($success) ?></p>
-<?php endif; ?>
+    <!-- Sidebar gauche -->
+    <div class="sidebar">
+        <?php include __DIR__ . '/navbar.php'; ?>
+    </div>
 
-<?php if ($error): ?>
-    <p style="color:red;"><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <div class="card">
+            <h2 class="text-center mb-4">Ajouter un utilisateur</h2>
 
-<form method="POST">
+            <?php if ($success): ?>
+                <p style="color:green;"><?= htmlspecialchars($success) ?></p>
+            <?php endif; ?>
 
-    <label>Prénom :</label><br>
-    <input type="text" name="name" required><br><br>
+            <?php if ($error): ?>
+                <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+            <?php endif; ?>
 
-    <label>Nom :</label><br>
-    <input type="text" name="surname" required><br><br>
+            <form method="POST">
 
-    <label>Email :</label><br>
-    <input type="email" name="mail" required><br><br>
+                <input type="text" name="name" placeholder="Prénom" required>
+                <input type="text" name="surname" placeholder="Nom" required>
+                <input type="email" name="mail" placeholder="Email" required>
 
-    <label>Promotion :</label><br>
-    <select name="id_promotions" required>
-        <option value="">-- Choisir une promotion --</option>
-        <?php foreach ($promos as $promo): ?>
-            <option value="<?= htmlspecialchars($promo['id_promotions']) ?>">
-                <?= htmlspecialchars($promo['name']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
+                <select name="id_promotions" required>
+                    <option value="">-- Choisir une promotion --</option>
+                    <?php foreach ($promos as $promo): ?>
+                        <option value="<?= htmlspecialchars($promo['id_promotions']) ?>">
+                            <?= htmlspecialchars($promo['name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
 
-    <label>Mot de passe :</label><br>
-    <input type="password" name="password" required><br><br>
+                <input type="password" name="password" placeholder="Mot de passe" required>
 
-    <button type="submit">Ajouter l'utilisateur</button>
+                <button type="submit">Ajouter l'utilisateur</button>
+            </form>
+        </div>
+    </div>
 
-</form>
+</div>
 
 </body>
 </html>
