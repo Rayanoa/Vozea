@@ -43,13 +43,14 @@ $resultat = $requete->fetchAll();
             background-color: #343a40;
             color: white;
             min-height: 100vh;
-            padding-top: 20px;
+            
         }
         .sidebar a {
             display: block;
             color: white;
             text-decoration: none;
             padding: 12px 20px;
+            
         }
         .sidebar a:hover {
             background-color: #495057;
