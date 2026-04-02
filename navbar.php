@@ -1,16 +1,30 @@
+<?php
+// sécurité : s'assurer que la session est bien démarrée
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <nav class="navbar">
     <div class="welcome-section">
-        <div class="user-badge">
-            <span class="firstname"><?= htmlspecialchars($_SESSION['name'] ?? 'Prénom') ?></span>
-            <span class="surname"><?= htmlspecialchars($_SESSION['surname'] ?? 'Nom') ?></span>
-        </div>
+        <?php if (isset($_SESSION['loggedin'])) { ?>
+            <div class="user-badge">
+                <span class="firstname"><?= htmlspecialchars($_SESSION['name']) ?></span>
+                <span class="surname"><?= htmlspecialchars($_SESSION['surname']) ?></span>
+            </div>
+        <?php } ?>
     </div>
 
     <div class="nav-links">
-        <a href="index.php" class="nav-item">Accueil</a>
-        <a href="table_tp.php" class="nav-item">Liste TP</a>
-        <a href="#" class="nav-item">Graphiques</a>
+        <?php if (isset($_SESSION['loggedin'])) { ?>
+            <!-- Visible uniquement si connecté -->
+            <a href="table_tp.php" class="nav-item">Liste TP</a>
+            <a href="graphics.php" class="nav-item">Graphiques</a>
             <a href="logout.php" class="nav-item logout">Déconnexion</a>
+        <?php } else { ?>
+            <!-- Visible uniquement si NON connecté -->
+            <a href="login_visu.php" class="nav-item">Connexion</a>
+        <?php } ?>
 
     </div>
 </nav>
@@ -40,7 +54,7 @@
     }
 
     .user-badge {
-        background-color: #ffffffaa; /* blanc semi-transparent */
+        background-color: #ffffffaa;
         padding: 15px 25px;
         border-radius: 20px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -65,19 +79,11 @@
     .user-badge .surname {
         display: block;
         font-size: 1.2rem;
-        font-weight: normal;
         color: #6b7abe;
         margin-top: 2px;
     }
 
-    /* Liens de navigation */
-    .sidebar .nav-links .nav-item.logout {
-    background-color: #b32818;
-}
-
-.sidebar .nav-links .nav-item.logout:hover {
-    background-color: #751309;
-}
+    /* Liens */
     .nav-links {
         display: flex;
         flex-direction: column;
@@ -101,5 +107,13 @@
         transform: scale(1.02);
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    
+
+    /* Bouton logout */
+    .nav-item.logout {
+        background-color: #b32818;
+    }
+
+    .nav-item.logout:hover {
+        background-color: #751309;
+    }
 </style>
